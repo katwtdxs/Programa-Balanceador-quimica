@@ -38,7 +38,15 @@ st.set_page_config(
 # ya que por defecto su diseño es muy genérico y no se adapta a lo que necesito
 st.markdown("""
 <style>
-#Con esto forzamos los colores implementados, ya que streamlit tiene unos personalizados
+#Con esto forzamos los colores y el CSS implementados, ya que streamlit tiene unos personalizados
+html, body, [class*="css"], [class*="st-"],
+[data-testid="stApp"],
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+[data-testid="stMainBlockContainer"],
+.main, .block-container, section, div {
+    background-color: #0b1827 !important;
+}
 * {
     -webkit-font-smoothing: antialiased;
 }
