@@ -542,7 +542,7 @@ with pestanas[0]:
     input_1, input_2, input_3 = st.columns([0.5, 6, 0.5])
     with input_2:
         st.markdown("<div class='section-eyebrow'>Sección balanceo</div>", unsafe_allow_html=True)
-        st.markdown("<p style='color:var(--azul_13);font-size:1rem;margin-bottom:1.2rem'>Al momento de ingresar una ecuación separa los reactivos y productos con (=) y usa (+) entre compuestos</p>", unsafe_allow_html=True)
+        st.markdown("<p style='color:var(--azul_13);font-size:1rem;margin-bottom:1.2rem'>Al momento de ingresar una ecuación separa los reactivos y productos con (=) y usa (+) entre compuestos (Asegurate de ingresar los valores sin coeficientes previos, ya que puede generar unos coeficientes altos).)</p>", unsafe_allow_html=True)
         # Recibo la ecuación escrita por el usuario, con label oculto para que solo se vea el placeholder
         ecuacion = st.text_input(
             "eq", label_visibility="collapsed",
