@@ -1,0 +1,11 @@
+# Configuración de tema para Streamlit Cloud :
+# Este archivo le indica a Streamlit qué tema visual usar al desplegar la app.
+# Sin este archivo, Streamlit Cloud aplica su tema por defecto.
+
+[theme]
+base = "dark"
+backgroundColor = "#0b1827"
+secondaryBackgroundColor = "#0f2238"
+textColor = "#dce8f4"
+primaryColor = "#4a8bc4"
+font = "sans serif"
