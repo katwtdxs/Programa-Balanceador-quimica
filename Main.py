@@ -38,32 +38,9 @@ st.set_page_config(
 # ya que por defecto su diseño es muy genérico y no se adapta a lo que necesito
 st.markdown("""
 <style>
-#Con esto forzamos los colores y el CSS implementados, ya que streamlit tiene unos personalizados
-html, body, [class*="css"], [class*="st-"],
-[data-testid="stApp"],
-[data-testid="stAppViewContainer"],
-[data-testid="stMain"],
-[data-testid="stMainBlockContainer"],
-.main, .block-container, section, div {
-    background-color: #0b1827 !important;
-}
-* {
-    -webkit-font-smoothing: antialiased;
-}
-
-html, body, [data-testid="stApp"],
-[data-testid="stAppViewContainer"],
-[data-testid="stMain"],
-section[data-testid="stSidebar"],
-.main, .block-container {
-    background-color: #0b1827 !important;
-    color: #dce8f4 !important;
-}
-# Importo las fuentes de Google: Playfair Display para títulos y Source Sans 3 para el cuerpo
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
 
-# Defino las variables de color globales en :root para usarlas en todo el CSS
-# así si necesito cambiar algún tono solo lo cambio en un lugar
+
 :root {
     --azul_1: #0b1827;   
     --azul_2: #0f2238;   
@@ -87,16 +64,12 @@ section[data-testid="stSidebar"],
     --azul_20: rgba(74,139,196,0.12);
 }
 
-# Aplico el fondo oscuro y la tipografía base a todos los contenedores raíz de Streamlit
-# uso !important en todo para que mis estilos sobreescriban los de Streamlit sin excepción
 html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"] {
     background-color: var(--azul_1) !important;
     font-family: 'Source Sans 3', sans-serif !important;
     color: var(--azul_12) !important;
 }
 
-# Oculto la barra de herramientas superior de Streamlit y el pie de página
-# para que la app se vea más limpia y sin elementos que no controlo
 [data-testid="stHeader"] { display: none !important; }
 [data-testid="stMainBlockContainer"] {
     max-width: 860px !important;
@@ -105,16 +78,12 @@ html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"] {
 }
 footer { display: none !important; }
 
-# Estilos del encabezado principal de la aplicación
-# lo centro horizontalmente y le agrego un separador inferior sutil
 .app-header {
     text-align: center;
     padding: 2.4rem 0 1.6rem;
     border-bottom: 1px solid var(--azul_15);
     margin-bottom: 2rem;
 }
-# Etiqueta pequeña sobre el título (tipo "eyebrow label")
-# usa espaciado de letras amplio y mayúsculas para darle un toque editorial
 .app-header .label {
     font-size: 0.72rem;
     letter-spacing: 0.22em;
@@ -124,7 +93,6 @@ footer { display: none !important; }
     font-weight: 500;
     margin-bottom: 0.6rem;
 }
-# Título principal con la fuente serif para contrastar con el resto del cuerpo sans-serif
 .app-header h1 {
     font-family: 'Playfair Display', serif !important;
     font-size: 2.5rem !important;
@@ -134,22 +102,18 @@ footer { display: none !important; }
     line-height: 1.2 !important;
     letter-spacing: -0.01em !important;
 }
-# Subtítulo debajo del h1, con tono más apagado para no competir visualmente
 .app-header .subtitle {
     font-size: 0.92rem;
     color: var(--azul_13);
     margin-top: 0.6rem;
 }
 
-# Contenedor de la lista de pestañas: fondo transparente con línea inferior como separador
 [data-testid="stTabs"] [data-baseweb="tab-list"] {
     background: transparent !important;
     border-bottom: 1px solid var(--azul_15) !important;
     gap: 0 !important;
     margin-bottom: 1.8rem !important;
 }
-# Estilo base de cada pestaña inactiva
-# el borde inferior transparente se vuelve visible al activarse o hacer hover
 [data-testid="stTabs"] [data-baseweb="tab"] {
     background: transparent !important;
     border: none !important;
@@ -164,23 +128,18 @@ footer { display: none !important; }
     text-transform: uppercase !important;
     transition: color 0.2s, border-color 0.2s !important;
 }
-# Pestaña activa: destaco el texto y pinto el borde inferior para indicar selección
 [data-testid="stTabs"] [aria-selected="true"] {
     color: var(--azul_9) !important;
     border-bottom-color: var(--azul_8) !important;
 }
-# Hover en pestañas inactivas: aclaro el texto como retroalimentación visual
 [data-testid="stTabs"] [aria-selected="false"]:hover {
     color: var(--azul_12) !important;
 }
-# Oculto el indicador animado por defecto de BaseWeb porque uso mi propio borde inferior
 div[data-baseweb="tab-highlight"] { display: none !important; }
 
-# Oculto las etiquetas de los inputs y selectboxes porque uso placeholders o texto propio
 [data-testid="stTextInput"] label,
 [data-testid="stSelectbox"] label { display: none !important; }
 
-# Campo de texto: fondo oscuro con borde sutil, tipografía coherente con el resto de la app
 [data-testid="stTextInput"] input {
     background: var(--azul_2) !important;
     border: 1px solid var(--azul_16) !important;
@@ -191,16 +150,13 @@ div[data-baseweb="tab-highlight"] { display: none !important; }
     padding: 0.7rem 1rem !important;
     transition: border-color 0.2s, box-shadow 0.2s !important;
 }
-# Al hacer focus resalto el borde y agrego un halo exterior para indicar el campo activo
 [data-testid="stTextInput"] input:focus {
     border-color: var(--azul_7) !important;
     box-shadow: 0 0 0 3px var(--azul_20) !important;
     outline: none !important;
 }
-# El placeholder usa un tono más apagado para que no compita con el texto real del usuario
 [data-testid="stTextInput"] input::placeholder { color: var(--azul_14) !important; }
 
-# Botón genérico: fondo medio con borde y texto azul claro, bordes redondeados
 [data-testid="stButton"] > button {
     background: var(--azul_3) !important;
     border: 1px solid var(--azul_16) !important;
@@ -214,15 +170,12 @@ div[data-baseweb="tab-highlight"] { display: none !important; }
     transition: all 0.2s ease !important;
     cursor: pointer !important;
 }
-# Hover del botón genérico: aclaro fondo y borde para dar retroalimentación de interacción
 [data-testid="stButton"] > button:hover {
     background: var(--azul_4) !important;
     border-color: var(--azul_7) !important;
     color: var(--azul_10) !important;
 }
 
-# El primer botón de cada sección recibe un estilo primario más prominente
-# más peso visual para indicar que es la acción principal de esa vista
 [data-testid="stButton"]:first-of-type > button {
     background: var(--azul_4) !important;
     border-color: var(--azul_7) !important;
@@ -230,14 +183,11 @@ div[data-baseweb="tab-highlight"] { display: none !important; }
     font-weight: 600 !important;
     padding: 0.65rem 2rem !important;
 }
-# Hover del botón primario: fondo más brillante y texto blanco puro para mayor contraste
 [data-testid="stButton"]:first-of-type > button:hover {
     background: var(--azul_7) !important;
     color: #fff !important;
 }
 
-# Botón de descarga: tratamiento más discreto que el botón normal
-# se diferencia por ser más plano y ocupar todo el ancho disponible
 [data-testid="stDownloadButton"] > button {
     background: var(--azul_2) !important;
     border: 1px solid var(--azul_15) !important;
@@ -248,13 +198,11 @@ div[data-baseweb="tab-highlight"] { display: none !important; }
     width: 100% !important;
     transition: all 0.2s !important;
 }
-# Hover del botón de descarga: solo cambio borde y color del texto, sin tocar el fondo
 [data-testid="stDownloadButton"] > button:hover {
     border-color: var(--azul_7) !important;
     color: var(--azul_9) !important;
 }
 
-# Selectbox: mismo lenguaje visual que el input de texto para unificar los controles del formulario
 [data-testid="stSelectbox"] > div > div {
     background: var(--azul_2) !important;
     border: 1px solid var(--azul_16) !important;
@@ -262,58 +210,49 @@ div[data-baseweb="tab-highlight"] { display: none !important; }
     color: var(--azul_12) !important;
 }
 
-# Contenedor base de todas las alertas: borde redondeado y línea sutil
 [data-testid="stAlert"] {
     border-radius: 8px !important;
     border: 1px solid var(--azul_15) !important;
 }
-# Alerta de éxito: fondo verde muy oscuro con texto verde claro para buenas noticias
 .stSuccess {
     background: rgba(28, 58, 42, 0.5) !important;
     border-color: rgba(46, 132, 85, 0.4) !important;
     color: #7ecb9e !important;
 }
-# Alerta informativa: azul oscuro semitransparente, coherente con la paleta general
 .stInfo {
     background: rgba(15, 40, 68, 0.6) !important;
     border-color: var(--azul_16) !important;
     color: var(--azul_10) !important;
 }
-# Alerta de advertencia: tono ámbar muy oscuro para indicar precaución sin alarmar
 .stWarning {
     background: rgba(58, 44, 12, 0.5) !important;
     border-color: rgba(160, 110, 30, 0.4) !important;
     color: #e2b96a !important;
 }
-# Alerta de error: rojo muy oscuro para errores graves, texto rojo claro legible
 .stError {
     background: rgba(58, 18, 18, 0.5) !important;
     border-color: rgba(160, 50, 50, 0.4) !important;
     color: #e28a8a !important;
 }
 
-# Tarjeta de métrica: fondo elevado con borde para destacarla del fondo de la página
 [data-testid="stMetric"] {
     background: var(--azul_2) !important;
     border: 1px solid var(--azul_15) !important;
     border-radius: 10px !important;
     padding: 1rem 1.2rem !important;
 }
-# Etiqueta de la métrica: tamaño pequeño y mayúsculas para que parezca un subtítulo de dato
 [data-testid="stMetric"] label {
     color: var(--azul_13) !important;
     font-size: 0.8rem !important;
     text-transform: uppercase !important;
     letter-spacing: 0.08em !important;
 }
-# Valor de la métrica: fuente serif grande para darle jerarquía visual al número
 [data-testid="stMetric"] [data-testid="stMetricValue"] {
     color: var(--azul_10) !important;
     font-size: 1.6rem !important;
     font-family: 'Playfair Display', serif !important;
 }
 
-# Bloques de código: mismo fondo oscuro que los inputs para consistencia cromática
 [data-testid="stCodeBlock"] pre, code {
     background: var(--azul_2) !important;
     border: 1px solid var(--azul_15) !important;
@@ -322,13 +261,11 @@ div[data-baseweb="tab-highlight"] { display: none !important; }
     font-size: 0.96rem !important;
 }
 
-# Tabla nativa de Streamlit: ancho completo sin separación entre bordes de celdas
 [data-testid="stTable"] table {
     width: 100% !important;
     border-collapse: collapse !important;
     font-size: 0.88rem !important;
 }
-# Encabezados de la tabla: fondo ligeramente más claro que el cuerpo, texto azul y mayúsculas
 [data-testid="stTable"] thead th {
     background: var(--azul_3) !important;
     color: var(--azul_9) !important;
@@ -339,35 +276,28 @@ div[data-baseweb="tab-highlight"] { display: none !important; }
     padding: 0.6rem 1rem !important;
     border-bottom: 1px solid var(--azul_16) !important;
 }
-# Celdas del cuerpo de la tabla con separador inferior para distinguir las filas
 [data-testid="stTable"] tbody td {
     color: var(--azul_12) !important;
     padding: 0.55rem 1rem !important;
     border-bottom: 1px solid var(--azul_15) !important;
 }
-# Al pasar el cursor por una fila la resalto sutilmente para facilitar la lectura
 [data-testid="stTable"] tbody tr:hover td {
     background: var(--azul_20) !important;
 }
 
-# Expander: mismo lenguaje de tarjeta que el resto de contenedores de la app
 [data-testid="stExpander"] {
     background: var(--azul_2) !important;
     border: 1px solid var(--azul_15) !important;
     border-radius: 8px !important;
 }
-# Texto del summary del expander: tamaño reducido para no competir con el contenido interior
 [data-testid="stExpander"] summary {
     color: var(--azul_13) !important;
     font-size: 0.88rem !important;
     font-weight: 500 !important;
 }
 
-# Separador horizontal: línea fina semitransparente sin el borde por defecto del navegador
 hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
 
-# Eyebrow label reutilizable: pequeño, en mayúsculas y con color de acento
-# lo uso antes de los títulos de sección para dar contexto antes del h2
 .section-eyebrow {
     font-size: 0.72rem;
     letter-spacing: 0.18em;
@@ -376,7 +306,6 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     font-weight: 600;
     margin-bottom: 0.3rem;
 }
-# Título de sección reutilizable: serif, destacado, para encabezar cada bloque de contenido
 .section-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.35rem;
@@ -384,7 +313,6 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     color: var(--azul_11);
     margin-bottom: 1.2rem;
 }
-# Tarjeta de resultado: contenedor elevado donde muestro cada dato del balanceo
 .result-card {
     background: var(--azul_2);
     border: 1px solid var(--azul_16);
@@ -392,7 +320,6 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     padding: 1rem 1.25rem;
     margin-bottom: 0.75rem;
 }
-# Etiqueta interna de la tarjeta de resultado: idéntico al eyebrow label pero más compacto
 .result-card .rc-label {
     font-size: 0.72rem;
     letter-spacing: 0.12em;
@@ -401,7 +328,6 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     margin-bottom: 0.35rem;
     font-weight: 500;
 }
-# Valor dentro de la tarjeta: texto claro con altura mínima para que la tarjeta no colapse si está vacío
 .result-card .rc-value {
     font-size: 1.05rem;
     color: var(--azul_12);
@@ -410,13 +336,11 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     min-height: 1.4rem;
     word-break: break-word;
 }
-# Variante destacada del valor: más grande y brillante, la uso para la ecuación balanceada
 .result-card .rc-value.highlight {
     color: var(--azul_10);
     font-weight: 600;
     font-size: 1.1rem;
 }
-# Contenedor de la tabla de verificación de átomos: oculta el desbordamiento para respetar las esquinas
 .atom-table-wrap {
     background: var(--azul_2);
     border: 1px solid var(--azul_15);
@@ -424,9 +348,7 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     overflow: hidden;
     margin-bottom: 0.5rem;
 }
-# La tabla interna ocupa todo el ancho del contenedor sin separación entre bordes
 .atom-table-wrap table { width: 100%; border-collapse: collapse; }
-# Encabezados de la tabla de átomos: fondo más claro, texto azul con mayúsculas
 .atom-table-wrap thead th {
     background: var(--azul_3);
     color: var(--azul_9);
@@ -438,7 +360,6 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     text-align: left;
     border-bottom: 1px solid var(--azul_16);
 }
-# Celdas del cuerpo de la tabla de átomos con separador inferior entre filas
 .atom-table-wrap tbody td {
     padding: 0.55rem 0.9rem;
     border-bottom: 1px solid var(--azul_15);
@@ -446,9 +367,7 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     color: var(--azul_12);
     vertical-align: middle;
 }
-# La última fila no necesita separador inferior porque el borde del contenedor ya lo delimita
 .atom-table-wrap tbody tr:last-child td { border-bottom: none; }
-# Caja de texto de explicación del balanceo: espacio amplio con altura mínima para no colapsar
 .explanation-box {
     background: var(--azul_2);
     border: 1px solid var(--azul_15);
@@ -459,7 +378,6 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     font-size: 0.93rem;
     line-height: 1.8;
 }
-# Píldora de masa molar: etiqueta en línea compacta para mostrar compuesto + valor en una sola línea
 .masa-pill {
     display: inline-flex;
     align-items: center;
@@ -472,18 +390,14 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     font-size: 0.88rem;
     color: var(--azul_12);
 }
-# El nombre del compuesto en la píldora se muestra en azul brillante para diferenciarlo del valor
 .masa-pill strong { color: var(--azul_9); font-weight: 600; }
-# La unidad g/mol se muestra más pequeña y apagada porque es información secundaria
 .masa-pill span { color: var(--azul_14); font-size: 0.82rem; }
-# Texto de ayuda bajo el input: pequeño y tenue para no competir con el placeholder
 .input-hint {
     font-size: 0.82rem;
     color: var(--azul_14);
     margin-top: 0.4rem;
     text-align: center;
 }
-# Caja de pregunta del quiz: borde izquierdo grueso como acento visual que la distingue de las tarjetas normales
 .quiz-question-box {
     background: var(--azul_2);
     border: 1px solid var(--azul_16);
@@ -492,7 +406,6 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     padding: 1.2rem 1.4rem;
     margin: 1rem 0;
 }
-# Entrada del historial: tarjeta compacta con tipografía monoespaciada para resaltar las ecuaciones
 .hist-entry {
     background: var(--azul_2);
     border: 1px solid var(--azul_15);
@@ -502,16 +415,11 @@ hr { border: none; border-top: 1px solid var(--azul_15); margin: 1.6rem 0; }
     font-size: 0.88rem;
     font-family: 'Source Sans 3', monospace;
 }
-# Oculto los textos de instrucción internos de Streamlit (small y clases instruction)
-# que aparecen automáticamente debajo de ciertos widgets y no quiero que se vean
 small, [class*="instruction"], [class*="Instruction"] {
     display: none !important;
 }
-# Ecuación original en el historial: azul brillante y negrita para identificarla de un vistazo
 .hist-entry .he-eq { color: var(--azul_9); font-weight: 600; margin-bottom: 0.2rem; }
-# Ecuación balanceada: tono claro estándar, diferenciada de la original por el símbolo →
 .hist-entry .he-bal { color: var(--azul_12); margin-bottom: 0.15rem; }
-# Metadatos (tipo y fecha): tamaño reducido y color apagado porque son datos de apoyo
 .hist-entry .he-meta { color: var(--azul_14); font-size: 0.78rem; }
 </style>
 """, unsafe_allow_html=True)
@@ -550,7 +458,7 @@ with pestanas[0]:
     input_1, input_2, input_3 = st.columns([0.5, 6, 0.5])
     with input_2:
         st.markdown("<div class='section-eyebrow'>Sección balanceo</div>", unsafe_allow_html=True)
-        st.markdown("<p style='color:var(--azul_13);font-size:1rem;margin-bottom:1.2rem'>Al momento de ingresar una ecuación separa los reactivos y productos con (=) y usa (+) entre compuestos (Asegurate de ingresar los valores sin coeficientes previos, ya que puede generar unos coeficientes altos).)</p>", unsafe_allow_html=True)
+        st.markdown("<p style='color:var(--azul_13);font-size:1rem;margin-bottom:1.2rem'>Al momento de ingresar una ecuación separa los reactivos y productos con (=) y usa (+) entre compuestos</p>", unsafe_allow_html=True)
         # Recibo la ecuación escrita por el usuario, con label oculto para que solo se vea el placeholder
         ecuacion = st.text_input(
             "eq", label_visibility="collapsed",
