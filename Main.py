@@ -524,6 +524,9 @@ pestanas = st.tabs(["(⸝⸝> ᴗ•⸝⸝) Balanceador", "(˶˃𐃷˂˶) Tabla 
 # Y aqui esta la primera pestaña que es el balanceador
 
 with pestanas[0]:
+    
+    st.markdown("<div class='section-eyebrow'>Balancea la ecuación</div><div class='section-title'>Tabla periódica</div>", unsafe_allow_html=True)
+
 
     # Centro el campo de texto usando columnas, la del medio es la que contiene el input
     # las columnas de los extremos son solo relleno visual para que no quede tan ancho
