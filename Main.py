@@ -38,6 +38,19 @@ st.set_page_config(
 # ya que por defecto su diseño es muy genérico y no se adapta a lo que necesito
 st.markdown("""
 <style>
+#Con esto forzamos los colores implementados, ya que streamlit tiene unos personalizados
+* {
+    -webkit-font-smoothing: antialiased;
+}
+
+html, body, [data-testid="stApp"],
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+section[data-testid="stSidebar"],
+.main, .block-container {
+    background-color: #0b1827 !important;
+    color: #dce8f4 !important;
+}
 # Importo las fuentes de Google: Playfair Display para títulos y Source Sans 3 para el cuerpo
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
 
